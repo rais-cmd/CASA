@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CASA - Shopping Made Fun</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url(DALL·E-2025-03-16-17.01.jpeg) no-repeat center center/cover;
+            background-color: black;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            position: relative;
+            
+        }
+
+        header nav ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            padding: 10px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 15, 15, 0.4);
+            padding: 15px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 6px 0;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        header nav ul li a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, #ffffff, rgba(255, 255, 255, 0.5));
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateX(-50%);
+            opacity: 0;
+        }
+
+        header nav ul li a:hover {
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        header nav ul li a:hover::before {
+            width: 100%;
+            opacity: 1;
+        }
+
+        /* Remove old sparkle animations */
+        header nav ul li a::after {
+            display: none;
+        }
+
+        @keyframes sparkle {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+       main{
+        position: absolute;
+        top: 20%;
+        
+        padding: 10px;
+       }
+        .title {
+            font-size: 8rem;
+            font-weight: bold;
+            background: linear-gradient(
+                120deg,
+                rgba(255, 255, 255, 0.8) 0%,
+                #64fffd 20%,
+                #9381ff 40%,
+                #ff61ab 60%,
+                #7ee8fa 80%,
+                rgba(255, 255, 255, 0.8) 100%
+            );
+            background-size: 400% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shine 12s linear infinite, glow 3s ease-in-out infinite alternate;
+        }
+
+        .title span {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes shine {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 400% 50%;
+            }
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 
+                    0 0 5px rgba(255, 255, 255, 0.3),
+                    0 0 15px rgba(100, 255, 253, 0.2),
+                    0 0 25px rgba(147, 129, 255, 0.2);
+            }
+            to {
+                text-shadow: 
+                    0 0 10px rgba(255, 255, 255, 0.3),
+                    0 0 30px rgba(100, 255, 253, 0.2),
+                    0 0 50px rgba(147, 129, 255, 0.2);
+            }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            font-size: 1rem;
+        }
+
+        .download {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: transparent; /* Button color */
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+            border: 1px solid whitesmoke;
+        }
+
+        .download:hover {
+            background-color: #fff8f8a6;
+            color: #000; /* Darker shade on hover */
+        }
+
+        .download span {
+            position: relative;
+            z-index: 1;
+            color: transparent;
+            background: linear-gradient(
+                90deg,
+                #ffffff 0%,
+                rgba(255, 255, 255, 0.4) 25%,
+                #ffffff 50%,
+                rgba(255, 255, 255, 0.4) 75%,
+                #ffffff 100%
+            );
+            background-size: 200% 100%;
+            background-position: 100% 0;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shineText 3s infinite linear;
+        }
+
+        @keyframes shineText {
+            0% {
+                background-position: 100% 0;
+            }
+            100% {
+                background-position: -100% 0;
+            }
+        }
+
+        
+
+        
+
+        .download:hover span {
+            color: transparent;
+            background: linear-gradient(
+                90deg,
+                #000000 0%,
+                rgba(0, 0, 0, 0.4) 25%,
+                #000000 50%,
+                rgba(0, 0, 0, 0.4) 75%,
+                #000000 100%
+            );
+            background-size: 200% 100%;
+            background-position: 100% 0;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shineText 3s infinite linear;
+        }
+
+        .download:hover::before,
+        .download:hover::after {
+            color: #000;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 1px 20px;
+            text-align: center;
+            background: rgba(15, 15, 15, 0.4);
+            backdrop-filter: blur(8px);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+       
+
+        .footer-bottom {
+        
+            
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        .stickers {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .sticker {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+            border-radius: 50%;
+            padding: 20px;
+            font-size: 28px;
+            animation: float 6s infinite ease-in-out, glow-sticker 2s ease-in-out infinite alternate;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform-origin: center;
+        }
+
+        .sticker.text {
+            border-radius: 25px;
+            padding: 12px 24px;
+            font-size: 15px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.95);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: rgba(255, 255, 255, 0.08);
+            animation: float 6s infinite ease-in-out, glow-text 2s ease-in-out infinite alternate;
+        }
+
+        .sticker.small { font-size: 22px; padding: 15px; }
+        .sticker.large { font-size: 32px; padding: 25px; }
+
+        .sticker:nth-child(1) { top: 15%; left: 8%; animation-delay: 0s; }
+        .sticker:nth-child(2) { top: 25%; right: 12%; animation-delay: -1s; }
+        .sticker:nth-child(3) { bottom: 25%; left: 12%; animation-delay: -2s; }
+        .sticker:nth-child(4) { bottom: 35%; right: 8%; animation-delay: -3s; }
+        .sticker:nth-child(5) { top: 45%; left: 15%; animation-delay: -4s; }
+        .sticker:nth-child(6) { top: 40%; right: 15%; animation-delay: -5s; }
+
+        @keyframes glow-sticker {
+            from {
+                box-shadow: 
+                    0 0 5px rgba(255, 255, 255, 0.3),
+                    0 0 10px rgba(255, 255, 255, 0.2),
+                    0 0 15px rgba(255, 255, 255, 0.1);
+            }
+            to {
+                box-shadow: 
+                    0 0 10px rgba(255, 255, 255, 0.4),
+                    0 0 20px rgba(255, 255, 255, 0.3),
+                    0 0 30px rgba(255, 255, 255, 0.2);
+            }
+        }
+
+        @keyframes glow-text {
+            from {
+                box-shadow: 
+                    0 0 5px rgba(255, 255, 255, 0.2),
+                    0 0 10px rgba(255, 255, 255, 0.1);
+            }
+            to {
+                box-shadow: 
+                    0 0 10px rgba(255, 255, 255, 0.3),
+                    0 0 20px rgba(255, 255, 255, 0.2);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg) scale(1.05);
+            }
+        }
+
+        /* Update these styles */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1002;
+            background: rgba(15, 15, 15, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 24px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        @media screen and (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -300px;
+                width: 250px;
+                height: 100%;
+                background: rgba(15, 15, 15, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 80px 20px;
+                z-index: 1001;
+                transition: right 0.3s ease;
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            nav ul li {
+                width: 100%;
+            }
+
+            nav ul li a {
+                display: block;
+                font-size: 1.2rem;
+                padding: 10px 0;
+                color: white;
+                text-decoration: none;
+            }
+            .sticker {
+                
+                z-index: -1;
+            }
+        }
+
+        /* Additional responsive adjustments */
+        @media screen and (max-width: 480px) {
+            .title {
+                font-size: 5rem;
+            }
+
+            .buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .sticker {
+                transform: scale(0.4);
+                z-index: -1;
+            }
+            footer{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0%;
+                margin: 0%;
+            }
+        }
+
+        /* Menu toggle animation */
+        .menu-toggle.active {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .download-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            margin: 20px 0;
+            z-index: 1000;
+            position: relative;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #6e8efb, #4a6cf7);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            margin: 0 auto;
+            font-size: 16px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 108, 247, 0.3);
+        }
+
+        .download-button:active {
+            transform: translateY(0);
+        }
+
+        .download-icon {
+            margin-right: 8px;
+        }
+
+        /* Mobile Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .download-button {
+                width: 80%;
+                padding: 14px 20px;
+                font-size: 18px;
+                margin: 0 auto;
+            }
+        }
+
+        /* Small mobile devices */
+        @media screen and (max-width: 480px) {
+            .download-container {
+                padding: 10px;
+            }
+            
+            .download-button {
+                width: 90%;
+                padding: 12px 16px;
+                font-size: 16px;
+            }
+        }
+        .sticker {
+                
+                z-index: -1;
+            }
+
+        nav {
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-toggle">☰</button>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="team.html">Contact</a></li>
+                <li><a href="privacy.html">Privacy & Policy</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h1 class="title" id="animated-title">CASA</h1>
+        <p class="subtitle">Shopping made fun</p>
+        
+        <div class="buttons">
+            <a href="/CASA_QA-1.3_20-03-2025.apk" class="download apk" download>
+                <span>Download APK</span>
+            </a>
+            <a href="/Casa Pitch Deck..pdf" class="download pitched" download>
+                <span>Download Pitched</span>
+            </a>
+        </div>
+    </main>
+    
+    <footer>
+       
+           
+        <div class="footer-bottom">
+            <p>&copy; 2024 CASA. All rights reserved. A subsidiary of Bankbyte Finance Private Limited.</p>
+        </div>
+    </footer>
+
+    <div class="stickers">
+        <div class="sticker large">👗</div>
+        <div class="sticker text">Trendy</div>
+        <div class="sticker">👕</div>
+        <div class="sticker text">Fashion</div>
+        <div class="sticker">🛍️</div>
+        <div class="sticker text">Style</div>
+    </div>
+
+    <script>
+        const menuBtn = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        
+        menuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!nav.contains(e.target) && !menuBtn.contains(e.target)) {
+                nav.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
