@@ -1,0 +1,13 @@
+name: rais
+
+on:
+push:
+branches:[main]
+
+jobs:
+kaam:
+runs-on:ubuntu-latest
+
+steps:
+- name:greetings
+run:echo"hello from rais"
